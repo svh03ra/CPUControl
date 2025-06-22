@@ -1,0 +1,1 @@
+This is for real mode and DOS-based kernels, but it cannot run on modern NT-based kernels.

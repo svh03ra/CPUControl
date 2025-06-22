@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2B6BD4E0-1E3C-47E9-AC24-B2498A4D79B0}</ProjectGuid>
+    <RootNamespace>halt_drv</RootNamespace>
+    <TargetName>halt_drv</TargetName>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Driver</ConfigurationType>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <ItemGroup>
+    <!-- C Source Files -->
+    <ClCompile Include="breakpoint\brkpint_drv.c" />
+    <ClCompile Include="burst\multburst_drv.c" />
+    <ClCompile Include="exception\crash_drv.c" />
+    <ClCompile Include="fault\trifalt_drv.c" />
+    <ClCompile Include="halt\halt_drv.c" />
+    <ClCompile Include="int_call\intcall_drv.c" />
+    <ClCompile Include="irq\disable\irqdisable_drv.c" />
+    <ClCompile Include="irq\enable\irqenable_drv.c" />
+    <ClCompile Include="loop\infloop_drv.c" />
+    <ClCompile Include="mask\maskint_drv.c" />
+    <ClCompile Include="protect_fault\prtfault_drv.c" />
+
+    <!-- ASM Source Files -->
+    <MASM Include="breakpoint\breakpoint.asm" />
+    <MASM Include="burst\burst.asm" />
+    <MASM Include="exception\crash.asm" />
+    <MASM Include="fault\fault.asm" />
+    <MASM Include="halt\halt.asm" />
+    <MASM Include="int_call\interrupt.asm" />
+    <MASM Include="irq\disable\disable.asm" />
+    <MASM Include="irq\enable\enable.asm" />
+    <MASM Include="loop\loop.asm" />
+    <MASM Include="mask\mask.asm" />
+    <MASM Include="protect_fault\profault.asm" />
+  </ItemGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WDKContentRoot)\Include\wdf\kmdf\1.11;$(WDKContentRoot)\Include\km;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AMD64_;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <MASM>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+    </MASM>
+    <Link>
+      <AdditionalDependencies>ntoskrnl.lib;hal.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(WDKContentRoot)\CodeGeneration\Microsoft.DriverKit.props" Condition="Exists('$(WDKContentRoot)\CodeGeneration\Microsoft.DriverKit.props')" />
+  <Import Project="$(WDKContentRoot)\CodeGeneration\Microsoft.DriverKit.targets" Condition="Exists('$(WDKContentRoot)\CodeGeneration\Microsoft.DriverKit.targets')" />
+</Project>

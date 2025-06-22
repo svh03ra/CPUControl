@@ -1,0 +1,4 @@
+TARGETNAME=crash_drv
+TARGETTYPE=DRIVER
+SOURCES=..\crash_drv.c
+N_ASMFILES=crash.asm

@@ -1,0 +1,4 @@
+TARGETNAME=halt_drv
+TARGETTYPE=DRIVER
+SOURCES=..\halt_drv.c
+N_ASMFILES=halt-x86.asm
