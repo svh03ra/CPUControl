@@ -1,0 +1,65 @@
+# Ignore object files
+*.obj
+*.o
+
+# Ignore PDBs and symbol files
+*.pdb
+
+# Ignore built drivers
+*.sys
+
+# Ignore compiled binaries and temporary files
+*.exe
+*.dll
+*.lib
+
+# Ignore certificate files
+*.pfx
+*.cer
+*.crt
+*.key
+*.pem
+*.der
+*.csr
+*.pvk
+*.spc
+*.sst
+
+# Ignore Visual Studio project files
+*.sln
+*.suo
+*.user
+*.opensdf
+*.log
+
+# Ignore batch and build scripts
+*.bat
+
+# Ignore raw folders and build folders
+old/
+raw/
+obj/
+output/
+temp/
+
+# Ignore VS Code / editor metadata
+.vs/
+.vscode/
+*.code-workspace
+
+# Ignore backups
+*~
+*.bak
+
+# Ignore junk files
+Thumbs.db
+Desktop.ini
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.directory
+.nfs*
