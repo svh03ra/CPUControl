@@ -82,9 +82,36 @@ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\<ve
 
 _(Replace <version> with your installed MSVC version, e.g. `14.35.32215`)_
 
-#
 
 Next, you'll need to build the driver tools program.  
 Go to the `build` folder, it contains the tool's source code. Follow the instructions in the README to compile it.
 
-Once compiled, run the driver tool to build your driver that's it!
+Once compiled, run the driver tool to build your driver.
+
+#
+
+**🔄 Run a driver:**
+
+You have to place the driver file in an important location (e.g. `System32\drivers`)
+
+If the driver isn't running, you’ll need to enable test mode:
+
+```
+bcdedit /set testsigning on
+```
+
+Reboot your system after running this command. Test mode is active, you can load the driver using:
+
+
+```
+sc create DriverName type=kernel start=demand binPath="C:\Where\To\YourDriver.sys"
+```
+
+Once done, To start the driver command:
+
+```
+sc start DriverName
+```
+
+
+**That's it, Have fun!**
